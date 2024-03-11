@@ -3,11 +3,78 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> AdonisJS - A fully featured web framework for Node.js </title>
+  <title> AirPark_accueil </title>
+  <link rel="stylesheet" href="styles.css">
+
+
+  <header>
+    <!-- Logo redirigeant vers la page d'accueil, voir l'import du logo plus tard-->
+    <a href="home.edge"><img asset="logo_1.png" alt="logo_1"></a>
+
+
+    <!-- Barre de navigation -->
+    <nav>
+        <ul>
+            <li><a href="parking.edge">Parking</a></li>
+            <li><a href="about.edge">A propos de nous</a></li>
+            <li><a href="about.edge">Rechercher</a></li>
+            <li><a href="login.edge">Se connecter</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <script>
+        // vérifie l'état de connexion du user
+        function checkConnection() {
+            // variable isLoggedIn indique l'état de connexion
+            var isLoggedIn = true;
+
+            if (!isLoggedIn) {
+                // Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
+                window.location.href = "login.edge";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var welcomeText = document.querySelector('.welcome-text');
+            var text = welcomeText.innerText;
+            welcomeText.innerHTML = '';
+            text.split('').forEach(function(char, index) {
+                var span = document.createElement('span');
+                span.innerText = char;
+                span.style.animationDelay = index * 1.9 + 's';
+                welcomeText.appendChild(span);
+            });
+        });
+    </script>
 
   @vite(['resources/js/app.js'])
 </head>
 <body>
-  <h1> It Workdsdsds! </h1>
+
+
+    <main>
+        <!-- Message de bienvenue -->
+        <section>
+          <h1 class="welcome-text">Bienvenue sur AirPark. <br>
+            Une solution simple et intuitive pour retrouver des parkings disponibles dans un rayon de 15 kilomètres. <br>
+            En un clic vous pouvez réserver un parking ou mettre en location votre parking.
+          </h1>
+            <!-- Autres contenus de la page vont ici -->
+        </section>
+    </main>
+
+    <footer>
+        <!-- Liens en bas de page -->
+        <nav>
+            <ul>
+                <li><a href="contact.edge" onclick="checkConnection()">Nous contacter</a></li>
+                <li><a href="partenaires.edge" onclick="checkConnection()">Partenaires</a></li>
+                <li><a href="support.edge" onclick="checkConnection()">Support</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
 </body>
 </html>
